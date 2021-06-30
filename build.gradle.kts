@@ -37,7 +37,8 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.h2database:h2")
     implementation("io.micronaut:micronaut-validation")
-
+    //compile ("io.micronaut.configuration:micronaut-hibernate-validator")
+    implementation("org.hibernate:hibernate-validator:6.1.6.Final")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
