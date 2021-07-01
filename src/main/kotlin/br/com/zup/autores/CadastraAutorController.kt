@@ -8,11 +8,12 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autores")
-class CadastraAutorController {
+class CadastraAutorController(val autorRepository: AutorRepository) {
     @Post//vc pode omitir o @Body que o micronaut injeta o corpo da requisição no NovoAutorRequest mesmo assim
     fun cadastra(@Body @Valid request: NovoAutorRequest) {//@Valid diz ao micronaut que é pra validar o NovoAutorRequest
         println("Requisição => ${request}")
         val autor = request.paraAutor()
+        autorRepository.save(autor)
         println("Autor => ${autor.nome}")
     }
 }
