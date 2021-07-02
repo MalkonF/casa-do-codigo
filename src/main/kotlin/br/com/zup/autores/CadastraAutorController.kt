@@ -17,8 +17,9 @@ class CadastraAutorController(val autorRepository: AutorRepository) {
         println("Requisição => ${request}")
         val autor = request.paraAutor()
         autorRepository.save(autor)
-        println("Autor => ${autor.nome}")
+        println("Autor => ${autor.nome}")//no pair o valor de autor.id é atribuído a id
         val uri = UriBuilder.of("/autores/{id}").expand(mutableMapOf(Pair("id", autor.id)))
+        //expand vai substituir o {id} pelo conteúdo de Pair...
         return HttpResponse.created(uri)
     }
 }
