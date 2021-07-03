@@ -4,8 +4,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 
-
-@Controller("/autores")
+@Controller("/detalhes/autores")
 class BuscaDetalhesDeAutores(val autorRepository: AutorRepository) {
     @Get
     fun lista(): HttpResponse<List<DetalhesDoAutorResponse>> {
