@@ -12,7 +12,7 @@ class Autor(
     val nome: String?,
     val email: String?,
     var descricao: String?,
-    val endereco: Endereco
+    val endereco: Endereco?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
