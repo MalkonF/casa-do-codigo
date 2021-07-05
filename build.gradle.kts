@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.4.32"
 }
 
-allOpen{
+allOpen {
     annotation("io.micronaut.http.annotation.Controller")
 }
 
@@ -48,6 +48,7 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("org.postgresql:postgresql:42.2.18")
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
 
 
 }
