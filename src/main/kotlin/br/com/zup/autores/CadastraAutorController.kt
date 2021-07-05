@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.uri.UriBuilder
 import io.micronaut.validation.Validated
+import javax.transaction.Transactional
 
 import javax.validation.Valid
 
@@ -13,6 +14,7 @@ import javax.validation.Valid
 @Controller("/autores")
 class CadastraAutorController(val autorRepository: AutorRepository) {
     @Post//vc pode omitir o @Body que o micronaut injeta o corpo da requisição no NovoAutorRequest mesmo assim
+    @Transactional
     fun cadastra(@Body @Valid request: NovoAutorRequest): HttpResponse<Any> {//@Valid diz ao micronaut que é pra validar o NovoAutorRequest
         println("Requisição => ${request}")
         val autor = request.paraAutor()
