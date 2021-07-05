@@ -12,12 +12,18 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autores")
-class CadastraAutorController(val autorRepository: AutorRepository) {
+class CadastraAutorController(
+    val autorRepository: AutorRepository,
+    val enderecoClient: EnderecoClient
+) {
     @Post//vc pode omitir o @Body que o micronaut injeta o corpo da requisição no NovoAutorRequest mesmo assim
     @Transactional
     fun cadastra(@Body @Valid request: NovoAutorRequest): HttpResponse<Any> {//@Valid diz ao micronaut que é pra validar o NovoAutorRequest
         println("Requisição => ${request}")
-        val autor = request.paraAutor()
+        val enderecoResponse = enderecoClient.consulta(request.cep)
+
+        val autor = request.paraAutor(enderecoResponse.body()!!)//body permite valores nulos entao
+        //vc tem que usar o !! para permitir esses valores nulos. O melhor forma seria tratar esses valores nulos
         autorRepository.save(autor)
         println("Autor => ${autor.nome}")//no pair o valor de autor.id é atribuído a id
         val uri = UriBuilder.of("/autores/{id}").expand(mutableMapOf(Pair("id", autor.id)))
