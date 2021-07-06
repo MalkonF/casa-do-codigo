@@ -17,3 +17,7 @@ jpa:
       hibernate:
         hbm2ddl:
           auto: update
+
+logger:
+  levels:
+    io.micronaut.transactional: DEBUG
